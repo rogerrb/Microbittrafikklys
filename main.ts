@@ -68,8 +68,29 @@ function NesteLys () {
         Utavkrysset()
     }
 }
+input.onButtonPressed(Button.B, function () {
+    led.unplot(0, 1)
+    led.unplot(4, 1)
+    if (Sender == 0) {
+        Sender = 1
+    } else {
+        Sender = 0
+    }
+})
+let Sender = 0
 let Neste = 0
 Stopp()
 basic.forever(function () {
-	
+    while (Sender == 1) {
+        led.plot(0, 1)
+        basic.pause(100)
+        led.unplot(0, 1)
+        basic.pause(100)
+    }
+    while (Sender == 0) {
+        led.plot(4, 1)
+        basic.pause(100)
+        led.unplot(4, 1)
+        basic.pause(100)
+    }
 })
